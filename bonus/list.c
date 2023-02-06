@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 20:36:17 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/06 11:27:43 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:07:52 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,26 @@ static void	add_list_prev(t_circ_list **list, t_circ_list *new_list)
 		new_list->next = current_list;
 		current_list->prev = new_list;
 		prev_list->next = new_list;
+	}
+}
+
+static void	add_list_next(t_circ_list **list, t_circ_list *new_list)
+{
+	t_circ_list	*current_list;
+	t_circ_list	*next_list;
+
+	if (!list || !new_list)
+		return ;
+	if (!*list)
+		*list = new_list;
+	else
+	{
+		current_list = *list;
+		next_list = (*list)->next;
+		new_list->prev = current_list;
+		new_list->next = next_list;
+		current_list->next = new_list;
+		next_list->prev = new_list;
 	}
 }
 
@@ -91,3 +111,5 @@ void	clear_list(t_circ_list **list)
 	free(buf_list);
 	*list = NULL;
 }
+
+
