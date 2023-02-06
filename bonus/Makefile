@@ -1,13 +1,13 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MANDATORY_SRCS = ft_printf.c \
-	ft_isflag.c \
+	flags.c \
 	list.c \
 	ft_substr_size_t.c \
 	conversions.c \
 	conversion_c.c \
 	conversion_s.c \
-	make_string.c
+	string.c
 MANDATORY_OBJS = $(MANDATORY_SRCS:.c=.o)
 NAME = libftprintf.a
 

@@ -6,50 +6,11 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:34:53 by yahokari          #+#    #+#             */
-/*   Updated: 2023/01/31 21:02:00 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:35:42 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
-
-void	handle_normal_str(t_vars *vars, char *str, size_t start, size_t len)
-{
-	char	*tmp;
-
-	tmp = substr_size_t(str, start, len);
-	if (!tmp)
-		return ;
-	vars->word_count += ft_strlen(tmp);
-	insert_list(&vars->list, tmp);
-}
-
-void	handle_str_with_conversions(t_vars *vars)
-{
-	const char	*tmp;
-	size_t		len;
-
-	len = 0;
-	tmp = vars->str;
-	while (!vars->is_error)
-	{
-		if (!*vars->str || *vars->str == '%')
-		{
-			handle_normal_str(vars, (char *)tmp, 0, len);
-			len = 0;
-		}
-		if (!*vars->str)
-			break ;
-		if (*vars->str == '%')
-		{
-			handle_conversions(vars);
-			tmp = vars->str;
-			continue ;
-		}
-		else
-			len++;
-		vars->str++;
-	}
-}
 
 void	init_vars(t_vars *vars, const char *format)
 {
@@ -57,6 +18,46 @@ void	init_vars(t_vars *vars, const char *format)
 	vars->word_count = 0;
 	vars->list = NULL;
 	vars->is_error = false;
+}
+
+void	handle_str(t_vars *vars, char *str, size_t start, size_t len)
+{
+	char	*tmp;
+
+	tmp = substr_size_t(str, start, len);
+	if (!tmp)
+	{
+		vars->is_error = true;
+		return ;
+	}
+	vars->word_count += ft_strlen(tmp);
+	insert_list(&vars->list, tmp);
+}
+
+void	handle_str_with_conversions(t_vars *vars)
+{
+	const char	*str_start;
+	size_t		str_len;
+
+	str_len = 0;
+	str_start = vars->str;
+	while (!vars->is_error)
+	{
+		if (!*vars->str || *vars->str == '%')
+		{
+			handle_str(vars, (char *)str_start, 0, str_len);
+			str_len = 0;
+		}
+		if (vars->is_error || !*vars->str)
+			break ;
+		if (*vars->str == '%')
+			handle_conversions(vars);
+		else
+		{
+			str_len++;
+			vars->str++;
+		}
+	}
 }
 
 int	ft_printf(const char *format, ...)
@@ -71,6 +72,6 @@ int	ft_printf(const char *format, ...)
 		print_list(vars.list);
 	clear_list(&vars.list);
 	if (vars.word_count > INT_MAX)
-		return (-1);
+		return (ERROR);
 	return (vars.word_count);
 }
