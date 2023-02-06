@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:34:53 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/03 13:35:42 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:38:48 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	handle_str(t_vars *vars, char *str, size_t start, size_t len)
 		return ;
 	}
 	vars->word_count += ft_strlen(tmp);
-	insert_list(&vars->list, tmp);
+	insert_list(&vars->list, tmp, NORMAL_STRING);
 }
 
 void	handle_str_with_conversions(t_vars *vars)
@@ -51,7 +51,10 @@ void	handle_str_with_conversions(t_vars *vars)
 		if (vars->is_error || !*vars->str)
 			break ;
 		if (*vars->str == '%')
+		{
 			handle_conversions(vars);
+			str_start = vars->str;
+		}
 		else
 		{
 			str_len++;

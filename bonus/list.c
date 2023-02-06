@@ -6,72 +6,19 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 20:36:17 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/06 14:07:52 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:46:32 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
 
-static t_circ_list	*make_new_list(char *str)
-{
-	t_circ_list	*new_list;
-
-	new_list = malloc(sizeof(t_circ_list));
-	if (!new_list)
-		return (NULL);
-	new_list->str = str;
-	new_list->next = new_list;
-	new_list->prev = new_list;
-	return (new_list);
-}
-
-static void	add_list_prev(t_circ_list **list, t_circ_list *new_list)
-{
-	t_circ_list	*current_list;
-	t_circ_list	*prev_list;
-
-	if (!list || !new_list)
-		return ;
-	if (!*list)
-		*list = new_list;
-	else
-	{
-		current_list = *list;
-		prev_list = (*list)->prev;
-		new_list->prev = prev_list;
-		new_list->next = current_list;
-		current_list->prev = new_list;
-		prev_list->next = new_list;
-	}
-}
-
-static void	add_list_next(t_circ_list **list, t_circ_list *new_list)
-{
-	t_circ_list	*current_list;
-	t_circ_list	*next_list;
-
-	if (!list || !new_list)
-		return ;
-	if (!*list)
-		*list = new_list;
-	else
-	{
-		current_list = *list;
-		next_list = (*list)->next;
-		new_list->prev = current_list;
-		new_list->next = next_list;
-		current_list->next = new_list;
-		next_list->prev = new_list;
-	}
-}
-
-void	insert_list(t_circ_list **list, char *str)
+void	insert_list(t_circ_list **list, char *str, t_type type)
 {
 	if (!list)
 		return ;
 	if (!*list)
-		add_list_prev(list, make_new_list(NULL));
-	add_list_prev(list, make_new_list(str));
+		add_list_prev(list, make_new_list(NULL, SENTINEL));
+	add_list_prev(list, make_new_list(str, type));
 }
 
 void	print_list(t_circ_list *list)
@@ -112,4 +59,26 @@ void	clear_list(t_circ_list **list)
 	*list = NULL;
 }
 
+void	insert_list_after_last_type(t_circ_list **list, char *str, \
+	t_type type, t_type last_type)
+{
+	t_circ_list	*last_type_list;
 
+	last_type_list = find_last_type(*list, last_type);
+	if (!last_type_list)
+		insert_list(list, str, type);
+	else
+		add_list_next(&last_type_list, make_new_list(str, type));
+}
+
+void	insert_list_before_last_type(t_circ_list **list, char *str, \
+	t_type type, t_type last_type)
+{
+	t_circ_list	*last_type_list;
+
+	last_type_list = find_last_type(*list, last_type);
+	if (!last_type_list)
+		insert_list(list, str, type);
+	else
+		add_list_prev(&last_type_list, make_new_list(str, type));
+}

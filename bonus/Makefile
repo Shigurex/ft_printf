@@ -3,6 +3,7 @@ CFLAGS = -Wall -Wextra -Werror
 MANDATORY_SRCS = ft_printf.c \
 	flags.c \
 	list.c \
+	list_utils.c \
 	ft_substr_size_t.c \
 	conversions.c \
 	conversion_c.c \

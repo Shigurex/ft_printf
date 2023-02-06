@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:34:56 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/06 11:19:55 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:48:27 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 
 # define ERROR -1
 
+typedef enum e_type
+{
+	SENTINEL,
+	CONVERSION,
+	SPECIFICATION,
+	NORMAL_STRING
+}	t_type;
+
 typedef struct s_flags
 {
 	bool	minus;
@@ -39,6 +47,7 @@ typedef struct s_flags
 typedef struct s_circ_list
 {
 	char				*str;
+	t_type				type;
 	struct s_circ_list	*next;
 	struct s_circ_list	*prev;
 }	t_circ_list;
@@ -53,30 +62,40 @@ typedef struct s_vars
 }	t_vars;
 
 /* ft_printf.c */
-int		ft_printf(const char *format, ...);
+int			ft_printf(const char *format, ...);
 
 /* list.c */
-void	insert_list(t_circ_list **list, char *str);
-void	print_list(t_circ_list *list);
-void	clear_list(t_circ_list **list);
+void		insert_list(t_circ_list **list, char *str, t_type type);
+void		print_list(t_circ_list *list);
+void		clear_list(t_circ_list **list);
+void		insert_list_after_last_type(t_circ_list **list, char *str, \
+		t_type type, t_type last_type);
+void		insert_list_before_last_type(t_circ_list **list, char *str, \
+		t_type type, t_type last_type);
+
+/* list_utils.c */
+t_circ_list	*make_new_list(char *str, t_type type);
+void		add_list_prev(t_circ_list **list, t_circ_list *new_list);
+void		add_list_next(t_circ_list **list, t_circ_list *new_list);
+t_circ_list	*find_last_type(t_circ_list *list, t_type type);
 
 /* ft_substr_size_t.c */
-char	*substr_size_t(char const *s, size_t start, size_t len);
+char		*substr_size_t(char const *s, size_t start, size_t len);
 
 /* conversions.c */
-void	handle_conversions(t_vars *vars);
+void		handle_conversions(t_vars *vars);
 
 /* conversion_c.c */
-void	handle_c(t_vars *vars, t_flags *flags, char c);
+void		handle_c(t_vars *vars, t_flags *flags, char c);
 
 /* conversion_s.c */
-void	handle_s(t_vars *vars, t_flags *flags, char *str);
+void		handle_s(t_vars *vars, t_flags *flags, char *str);
 
 /* string.c */
-char	*make_char_reps_string(size_t size, char c);
+char		*make_char_reps_string(size_t size, char c);
 
 /* flags.c */
-void	init_flags(t_flags *flags);
-void	check_flags(t_vars *vars, t_flags *flags);
+void		init_flags(t_flags *flags);
+void		check_flags(t_vars *vars, t_flags *flags);
 
 #endif
