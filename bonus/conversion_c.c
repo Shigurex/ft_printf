@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:25:18 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/06 15:58:30 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:15:00 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ void	handle_c(t_vars *vars, t_flags *flags, char c)
 	{
 		spaces = make_char_reps_string(flags->width - 1, ' ');
 		if (!spaces)
-		{
-			free(tmp);
 			return ;
-		}
 		if (!flags->minus)
 			insert_list_before_last_type(&vars->list, spaces, \
 				SPECIFICATION, CONVERSION);
