@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:44:59 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/07 18:13:49 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:10:30 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ int	main(void)
 
 	printf("<---------- [conversion s] ---------->\n");
 	F("%-10.3sa\n", "hello");
-	F("%10.4sa\n", NULL);
+	F("%-10.3sa\n", NULL);
+	//F("%10.4sa\n", NULL);
+	//F("%010.6da\n", 324);
+	//F("%+10.0da\n", 324);
 	
 	// F("aa%s%-10caa\n", "hello", 'f');
 	// F("aa%s%100caa\n", "hello", 'f');

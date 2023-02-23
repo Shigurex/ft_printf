@@ -6,38 +6,52 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:25:18 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/07 18:15:01 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:13:48 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
 
-void	handle_s(t_vars *vars, t_flags *flags, char *str)
+static char	*handle_str(t_vars *vars, t_flags *flags, char *str)
 {
 	char	*tmp;
-	char	*spaces;
 	size_t	tmp_len;
+	bool	is_str_null;
 
-	// if (!str) //need modified
-	// {
-	// 	str = ft_strdup("(null)");
-	// 	if (!str)
-	// 		return ;
-	// }
+	is_str_null = false;
+	if (!str)
+	{
+		is_str_null = true;
+		str = ft_strdup("(null)");
+		if (!str)
+			return (NULL);
+	}
 	if (flags->dot)
 		tmp = substr_size_t(str, 0, flags->precision);
 	else
 		tmp = ft_strdup(str);
+	if (is_str_null)
+		free(str);
 	if (!tmp)
-		return ;
+		return (NULL);
 	tmp_len = ft_strlen(tmp);
 	vars->word_count += tmp_len;
 	insert_list(&vars->list, tmp, CONVERSION);
+	return (tmp);
+}
+
+static void	handle_spaces(t_vars *vars, t_flags *flags, size_t tmp_len)
+{
+	char	*spaces;
+
 	if (flags->width > 0 && (size_t)flags->width > tmp_len)
 	{
 		spaces = make_char_reps_string(flags->width - tmp_len, ' ');
 		if (!spaces)
+		{
+			vars->is_error = true;
 			return ;
+		}
 		if (!flags->minus)
 			insert_list_before_last_type(&vars->list, spaces, \
 				SPECIFICATION, CONVERSION);
@@ -46,4 +60,19 @@ void	handle_s(t_vars *vars, t_flags *flags, char *str)
 				SPECIFICATION, CONVERSION);
 		vars->word_count += ft_strlen(spaces);
 	}
+}
+
+void	handle_s(t_vars *vars, t_flags *flags, char *str)
+{
+	char	*tmp;
+	size_t	tmp_len;
+
+	tmp = handle_str(vars, flags, str);
+	if (!tmp)
+	{
+		vars->is_error = true;
+		return ;
+	}
+	tmp_len = ft_strlen(tmp);
+	handle_spaces(vars, flags, tmp_len);
 }
