@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion_d.c                                     :+:      :+:    :+:   */
+/*   conversion_d_i.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:25:18 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/23 12:17:17 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:54:08 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
-
-//static char	*itoa_with_flags(t_vars *vars, int n, t_flags *flags, int index)
-//{
-//	char	*str;
-
-//	if (n == 0)
-//	{
-//		str = malloc(sizeof(char) * (index + 1));
-//		if (!str)
-//			return (NULL);
-//	}
-//	else
-//		str = itoa_with_flags(vars, n / 10, flags, index + 1);
-//	if (!str)
-//		return (NULL);
-//}
 
 void	handle_d(t_vars *vars, t_flags *flags, char c)
 {

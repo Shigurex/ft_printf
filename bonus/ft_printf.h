@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:34:56 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/07 17:09:45 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:37:45 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,14 @@ char		*substr_size_t(char const *s, size_t start, size_t len);
 void		handle_conversions(t_vars *vars);
 
 /* conversion_c.c */
+void		handle_c_char(t_vars *vars, char c);
 void		handle_c(t_vars *vars, t_flags *flags, char c);
 
 /* conversion_s.c */
 void		handle_s(t_vars *vars, t_flags *flags, char *str);
+
+/* conversion_percent.c */
+void		handle_percent(t_vars *vars, t_flags *flags);
 
 /* string.c */
 char		*make_char_reps_string(size_t size, char c);

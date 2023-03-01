@@ -8,6 +8,7 @@ MANDATORY_SRCS = ft_printf.c \
 	conversions.c \
 	conversion_c.c \
 	conversion_s.c \
+	conversion_percent.c \
 	string.c
 MANDATORY_OBJS = $(MANDATORY_SRCS:.c=.o)
 NAME = libftprintf.a

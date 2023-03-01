@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 16:44:20 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/03 13:31:11 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:37:55 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	check_conversions(t_vars *vars, t_flags *flags)
 	else if (*vars->str == 'X')
 		;
 	else if (*vars->str == '%')
-		;
+		handle_percent(vars, flags);
 	vars->str++;
 }
 

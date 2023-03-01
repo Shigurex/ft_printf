@@ -6,13 +6,13 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:25:18 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/23 12:13:48 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:59:34 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
 
-static char	*handle_str(t_vars *vars, t_flags *flags, char *str)
+static char	*handle_s_str(t_vars *vars, t_flags *flags, char *str)
 {
 	char	*tmp;
 	size_t	tmp_len;
@@ -40,7 +40,7 @@ static char	*handle_str(t_vars *vars, t_flags *flags, char *str)
 	return (tmp);
 }
 
-static void	handle_spaces(t_vars *vars, t_flags *flags, size_t tmp_len)
+static void	handle_s_spaces(t_vars *vars, t_flags *flags, size_t tmp_len)
 {
 	char	*spaces;
 
@@ -67,12 +67,12 @@ void	handle_s(t_vars *vars, t_flags *flags, char *str)
 	char	*tmp;
 	size_t	tmp_len;
 
-	tmp = handle_str(vars, flags, str);
+	tmp = handle_s_str(vars, flags, str);
 	if (!tmp)
 	{
 		vars->is_error = true;
 		return ;
 	}
 	tmp_len = ft_strlen(tmp);
-	handle_spaces(vars, flags, tmp_len);
+	handle_s_spaces(vars, flags, tmp_len);
 }
