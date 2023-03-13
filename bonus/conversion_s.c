@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:25:18 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/23 14:59:34 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:25:22 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ static char	*handle_s_str(t_vars *vars, t_flags *flags, char *str)
 	return (tmp);
 }
 
-static void	handle_s_spaces(t_vars *vars, t_flags *flags, size_t tmp_len)
+static void	handle_s_spaces(t_vars *vars, t_flags *flags, size_t len)
 {
 	char	*spaces;
 
-	if (flags->width > 0 && (size_t)flags->width > tmp_len)
+	if (flags->width > 0 && (size_t)flags->width > len)
 	{
-		spaces = make_char_reps_string(flags->width - tmp_len, ' ');
+		spaces = make_char_reps_string(flags->width - len, ' ');
 		if (!spaces)
 		{
 			vars->is_error = true;

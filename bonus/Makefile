@@ -4,10 +4,12 @@ MANDATORY_SRCS = ft_printf.c \
 	flags.c \
 	list.c \
 	list_utils.c \
-	ft_substr_size_t.c \
+	substr_size_t.c \
+	uitoa_base.c \
 	conversions.c \
 	conversion_c.c \
 	conversion_s.c \
+	conversion_u.c \
 	conversion_percent.c \
 	string.c
 MANDATORY_OBJS = $(MANDATORY_SRCS:.c=.o)

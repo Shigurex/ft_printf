@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 16:44:20 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/23 15:37:55 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/03/01 21:32:16 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	check_conversions(t_vars *vars, t_flags *flags)
 	else if (*vars->str == 'd' || *vars->str == 'i')
 		;
 	else if (*vars->str == 'u')
-		;
+		handle_u(vars, flags, va_arg(vars->ap, unsigned int));
 	else if (*vars->str == 'x')
 		;
 	else if (*vars->str == 'X')
