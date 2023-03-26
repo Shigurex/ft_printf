@@ -1,16 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   uitoa_base.c                                       :+:      :+:    :+:   */
+/*   itoa.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 20:04:11 by yahokari          #+#    #+#             */
-/*   Updated: 2023/03/01 21:36:44 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:28:41 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
+
+static ssize_t	count_digit(int n)
+{
+	ssize_t	count;
+
+	count = 1;
+	while (n <= -10 || 10 <= n)
+	{
+		if (n > 0)
+			n /= 10;
+		else
+			n /= -10;
+		count++;
+	}
+	return (count);
+}
+
+char	*itoa_without_sign(t_vars *vars, int n)
+{
+	ssize_t	i;
+	ssize_t	digit;
+	char	*str;
+
+	digit = count_digit(n);
+	str = malloc(sizeof(char) * (digit + 1));
+	if (!str)
+	{
+		vars->is_error = true;
+		return (NULL);
+	}
+	i = digit - 1;
+	while (i >= 0)
+	{
+		str[i] = (n % 10) + '0';
+		if (n < 0)
+			n /= -10;
+		else
+			n /= 10;
+		i--;
+	}
+	str[digit] = '\0';
+	return (str);
+}
 
 static size_t	count_digit_base(unsigned int n, size_t base_len)
 {

@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:34:53 by yahokari          #+#    #+#             */
-/*   Updated: 2023/02/23 14:58:16 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:08:07 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,18 @@ void	handle_str_with_conversions(t_vars *vars)
 	while (!vars->is_error)
 	{
 		if (!*vars->str || *vars->str == '%')
-		{
 			handle_str(vars, (char *)str_start, 0, str_len);
-			str_len = 0;
-		}
 		if (vars->is_error || !*vars->str)
 			break ;
 		if (*vars->str == '%')
 		{
 			handle_conversions(vars);
-			str_start = vars->str;
+			str_start = vars->str + 1;
+			str_len = 0;
 		}
 		else
-		{
 			str_len++;
-			vars->str++;
-		}
+		vars->str++;
 	}
 }
 

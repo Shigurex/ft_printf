@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:59:55 by yahokari          #+#    #+#             */
-/*   Updated: 2023/03/05 16:11:01 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:23:17 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	handle_u(t_vars *vars, t_flags *flags, unsigned int n)
 		flags->zero = true;
 	if ((size_t)flags->precision < str_len)
 		flags->precision = str_len;
-	if (flags->width > 0 && !flags->dot)
+	if (flags->width > 0 && !flags->dot && !flags->minus)
 		flags->precision = flags->width;
 	if (flags->precision > flags->width)
 		flags->width = flags->precision;

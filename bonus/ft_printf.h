@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:34:56 by yahokari          #+#    #+#             */
-/*   Updated: 2023/03/01 21:31:48 by yahokari         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:22:52 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ t_circ_list	*find_last_type(t_circ_list *list, t_type type);
 /* ft_substr_size_t.c */
 char		*substr_size_t(char const *s, size_t start, size_t len);
 
-/* uitoa_base.c　*/
+/* itoa.c　*/
 char		*uitoa_base(unsigned int n, char *base);
+char		*itoa_without_sign(t_vars *vars, int n);
 
 /* conversions.c */
 void		handle_conversions(t_vars *vars);
@@ -94,6 +95,9 @@ void		handle_c(t_vars *vars, t_flags *flags, char c);
 
 /* conversion_s.c */
 void		handle_s(t_vars *vars, t_flags *flags, char *str);
+
+/* conversion_d.c */
+void		handle_d_i(t_vars *vars, t_flags *flags, int n);
 
 /* conversion_u.c */
 void		handle_u(t_vars *vars, t_flags *flags, unsigned int n);

@@ -5,10 +5,11 @@ MANDATORY_SRCS = ft_printf.c \
 	list.c \
 	list_utils.c \
 	substr_size_t.c \
-	uitoa_base.c \
+	itoa.c \
 	conversions.c \
 	conversion_c.c \
 	conversion_s.c \
+	conversion_d_i.c \
 	conversion_u.c \
 	conversion_percent.c \
 	string.c

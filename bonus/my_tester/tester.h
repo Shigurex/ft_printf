@@ -20,6 +20,28 @@
 
 # define MESSAGE(message) (YELLOW message DEFAULT)
 
+//# define F(...) { \
+//	int	stdout_fd; \
+//	stdout_fd = set_file(PRINTF_OUT); \
+//	int	expected = printf(__VA_ARGS__); \
+//	fflush(stdout); \
+//	unset_file(stdout_fd); \
+//	stdout_fd = set_file(FT_PRINTF_OUT); \
+//	int	actual = ft_printf(__VA_ARGS__); \
+//	fflush(stdout); \
+//	unset_file(stdout_fd); \
+//	printf("%sCase: %-30s%s	", BLUE, "("#__VA_ARGS__")", DEFAULT); \
+//	printf("%s %s	%s %s	", MESSAGE("Output:"), CHECK(system("diff "PRINTF_OUT" "FT_PRINTF_OUT" > "DIFF_OUT) == 0), MESSAGE("Return:"), CHECK(expected == actual)); \
+//	printf("%s[printf: %s%d%s, ft_printf: %s%d%s]%s\n", YELLOW, (expected == actual)? GREEN : RED, expected, YELLOW, (expected == actual)? GREEN : RED, actual, YELLOW, DEFAULT); \
+//	fflush(stdout); \
+//	printf("%s", RED); \
+//	system("cat "DIFF_OUT); \
+//	printf("%s", DEFAULT); \
+//	unlink(PRINTF_OUT); \
+//	unlink(FT_PRINTF_OUT); \
+//	unlink(DIFF_OUT); \
+//}
+
 # define F(...) { \
 	int	stdout_fd; \
 	stdout_fd = set_file(PRINTF_OUT); \
@@ -32,13 +54,20 @@
 	unset_file(stdout_fd); \
 	printf("%sCase: %-30s%s	", BLUE, "("#__VA_ARGS__")", DEFAULT); \
 	printf("%s %s	%s %s	", MESSAGE("Output:"), CHECK(system("diff "PRINTF_OUT" "FT_PRINTF_OUT" > "DIFF_OUT) == 0), MESSAGE("Return:"), CHECK(expected == actual)); \
-	printf("%s[printf: %d, ft_printf: %d]%s\n", YELLOW, expected, actual, DEFAULT); \
+	printf("%s[printf: %s%d%s, ft_printf: %s%d%s]%s\n", YELLOW, (expected == actual)? GREEN : RED, expected, YELLOW, (expected == actual)? GREEN : RED, actual, YELLOW, DEFAULT); \
 	fflush(stdout); \
+	printf("printf\t\t: "); \
+	system("cat "PRINTF_OUT); \
+	printf("ft_printf\t: "); \
+	system("cat "FT_PRINTF_OUT); \
+	printf("%s", RED); \
 	system("cat "DIFF_OUT); \
+	printf("%s", DEFAULT); \
 	unlink(PRINTF_OUT); \
 	unlink(FT_PRINTF_OUT); \
 	unlink(DIFF_OUT); \
 }
+
 
 int	set_file(char *file)
 {
