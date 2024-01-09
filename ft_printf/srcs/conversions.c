@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:01:45 by yahokari          #+#    #+#             */
-/*   Updated: 2023/12/11 12:58:52 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:25:45 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	print_conversions(t_vars *vars)
 	else if (*vars->str == 's')
 		print_conversion_s(vars, &flags, va_arg(vars->ap, char *));
 	else if (*vars->str == 'p')
-		print_conversion_p(vars, &flags, va_arg(vars->ap, void *));
+		print_conversion_p(vars, &flags, va_arg(vars->ap, uintptr_t));
 	else if (*vars->str == 'd' || *vars->str == 'i')
 		;
 	else if (*vars->str == 'u')
