@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:54:22 by yahokari          #+#    #+#             */
-/*   Updated: 2023/12/05 23:42:08 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/01/19 03:04:22 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putnchar_fd(char c, size_t n, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-void	ft_putnbr_base_fd(unsigned int n, char *base, int fd);
+void	ft_putnbr_base_fd(unsigned long n, char *base, int fd);
 void	ft_putstr_fd(char *c, int fd);
 void	ft_putnstr_fd(char *s, size_t n, int fd);
 char	**ft_split(char const *s, char c);
@@ -65,6 +65,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);

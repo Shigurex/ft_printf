@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion_p.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 11:08:34 by yahokari          #+#    #+#             */
-/*   Updated: 2024/01/19 09:44:22 by yahokari         ###   ########.fr       */
+/*   Created: 2022/04/07 20:21:21 by yahokari          #+#    #+#             */
+/*   Updated: 2024/01/19 03:03:45 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"ft_printf.h"
+#include	"libft.h"
 
-void	print_conversion_p(t_vars *vars, t_flags *flags, uintptr_t p)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	ft_putstr_fd(ALT_HEX_LOWER, STDOUT_FILENO);
-	vars->word_count += ft_strlen(ALT_HEX_LOWER);
-	if (flags->width >= num_len_in_str(p, HEX_LOWER))
-		flags->width -= num_len_in_str(p, HEX_LOWER);
-	print_unsigned(vars, flags, p, HEX_LOWER);
+	size_t	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i])
+		i++;
+	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
 }

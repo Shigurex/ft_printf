@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:01:45 by yahokari          #+#    #+#             */
-/*   Updated: 2024/01/09 17:25:45 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/01/19 02:52:27 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,13 @@ void	print_conversions(t_vars *vars)
 	else if (*vars->str == 'p')
 		print_conversion_p(vars, &flags, va_arg(vars->ap, uintptr_t));
 	else if (*vars->str == 'd' || *vars->str == 'i')
-		;
+		va_arg(vars->ap, int);
 	else if (*vars->str == 'u')
-		;
+		print_conversion_u(vars, &flags, va_arg(vars->ap, unsigned int));
 	else if (*vars->str == 'x')
 		print_conversion_x(vars, &flags, va_arg(vars->ap, unsigned int));
 	else if (*vars->str == 'X')
-		;
+		print_conversion_large_x(vars, &flags, va_arg(vars->ap, unsigned int));
 	else if (*vars->str == '%')
 		print_conversion_percent(vars, &flags);
 	else

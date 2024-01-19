@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:28:08 by yahokari          #+#    #+#             */
-/*   Updated: 2024/01/09 17:28:04 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/01/19 10:02:58 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 
 # define UNSET -1
 
-# define ALT_HEX "0x"
+# define ALT_HEX_LOWER "0x"
+# define ALT_HEX_UPPER "0X"
 
 # define HEX_LOWER "0123456789abcdef"
 # define HEX_UPPER "0123456789ABCDEF"
+# define DECIMAL "0123456789"
 
 typedef enum e_type
 {
@@ -68,10 +70,20 @@ void	print_conversion_s(t_vars *vars, t_flags *flags, char *str);
 /* conversion_p.c */
 void	print_conversion_p(t_vars *vars, t_flags *flags, uintptr_t p);
 
+/* conversion_u.c */
+void	print_conversion_u(t_vars *vars, t_flags *flags, unsigned int n);
+
 /* conversion_x.c */
 void	print_conversion_x(t_vars *vars, t_flags *flags, unsigned int n);
 
+/* conversion_large_x.c */
+void	print_conversion_large_x(t_vars *vars, t_flags *flags, unsigned int n);
+
 /* conversion_percent.c */
 void	print_conversion_percent(t_vars *vars, t_flags *flags);
+
+/* unsigned.c */
+int		num_len_in_str(size_t n, char *base);
+void	print_unsigned(t_vars *vars, t_flags *flags, size_t n, char *base);
 
 #endif

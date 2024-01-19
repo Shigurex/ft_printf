@@ -6,7 +6,7 @@
 #    By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/19 23:46:47 by yahokari          #+#    #+#              #
-#    Updated: 2023/12/05 23:42:38 by yahokari         ###   ########.fr        #
+#    Updated: 2024/01/19 03:04:30 by yahokari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ MANDATORY_SRCS = ft_atoi.c \
 	ft_strlcpy.c \
 	ft_strlen.c \
 	ft_strmapi.c \
+	ft_strcmp.c \
 	ft_strncmp.c \
 	ft_strnstr.c \
 	ft_strrchr.c \

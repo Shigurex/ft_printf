@@ -6,13 +6,13 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 23:39:26 by yahokari          #+#    #+#             */
-/*   Updated: 2023/12/05 23:44:37 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/01/16 14:46:55 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 
-void	ft_putnbr_base_fd(unsigned int n, char *base, int fd)
+void	ft_putnbr_base_fd(unsigned long n, char *base, int fd)
 {
 	size_t	base_len;
 
