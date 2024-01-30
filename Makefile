@@ -13,6 +13,7 @@ SRC_NAME = ft_printf.c \
 	conversion_c.c \
 	conversion_s.c \
 	conversion_p.c \
+	conversion_di.c \
 	conversion_u.c \
 	conversion_x.c \
 	conversion_large_x.c \

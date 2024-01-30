@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:28:08 by yahokari          #+#    #+#             */
-/*   Updated: 2024/01/19 10:02:58 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/01/31 01:24:00 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void	print_conversion_s(t_vars *vars, t_flags *flags, char *str);
 
 /* conversion_p.c */
 void	print_conversion_p(t_vars *vars, t_flags *flags, uintptr_t p);
+
+/* conversion_di.c */
+void	print_conversion_di(t_vars *vars, t_flags *flags, int n);
 
 /* conversion_u.c */
 void	print_conversion_u(t_vars *vars, t_flags *flags, unsigned int n);
