@@ -6,13 +6,13 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:01:45 by yahokari          #+#    #+#             */
-/*   Updated: 2024/02/14 22:22:10 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/02/14 22:53:30 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_flags(t_flags *flags)
+static void	init_flags(t_flags *flags)
 {
 	flags->alt_form = false;
 	flags->left_justify = false;
@@ -24,7 +24,7 @@ void	init_flags(t_flags *flags)
 	flags->precision = UNSET;
 }
 
-void	handle_flags(t_vars *vars, t_flags *flags)
+static void	handle_flags(t_vars *vars, t_flags *flags)
 {
 	while (true)
 	{
@@ -47,7 +47,7 @@ void	handle_flags(t_vars *vars, t_flags *flags)
 	}
 }
 
-void	handle_width(t_vars *vars, t_flags *flags)
+static void	handle_width(t_vars *vars, t_flags *flags)
 {
 	if (ft_isdigit(*vars->str))
 	{
@@ -67,7 +67,7 @@ void	handle_width(t_vars *vars, t_flags *flags)
 	}
 }
 
-void	handle_precision(t_vars *vars, t_flags *flags)
+static void	handle_precision(t_vars *vars, t_flags *flags)
 {
 	if (*vars->str == '.')
 	{
