@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:28:08 by yahokari          #+#    #+#             */
-/*   Updated: 2024/01/31 01:24:00 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/02/14 22:23:52 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,28 +62,28 @@ int		ft_printf(const char *format, ...);
 void	print_conversions(t_vars *vars);
 
 /* conversion_c.c */
-void	print_conversion_c(t_vars *vars, t_flags *flags, unsigned char c);
+void	print_char(t_vars *vars, t_flags *flags, unsigned char c);
 
 /* conversion_s.c */
-void	print_conversion_s(t_vars *vars, t_flags *flags, char *str);
+void	print_str(t_vars *vars, t_flags *flags, char *str);
 
 /* conversion_p.c */
-void	print_conversion_p(t_vars *vars, t_flags *flags, uintptr_t p);
+void	print_address(t_vars *vars, t_flags *flags, uintptr_t p);
 
 /* conversion_di.c */
-void	print_conversion_di(t_vars *vars, t_flags *flags, int n);
+void	print_int(t_vars *vars, t_flags *flags, int n);
 
 /* conversion_u.c */
-void	print_conversion_u(t_vars *vars, t_flags *flags, unsigned int n);
+void	print_uint(t_vars *vars, t_flags *flags, unsigned int n);
 
 /* conversion_x.c */
-void	print_conversion_x(t_vars *vars, t_flags *flags, unsigned int n);
+void	print_uint_hex_lower(t_vars *vars, t_flags *flags, unsigned int n);
 
 /* conversion_large_x.c */
-void	print_conversion_large_x(t_vars *vars, t_flags *flags, unsigned int n);
+void	print_uint_hex_upper(t_vars *vars, t_flags *flags, unsigned int n);
 
 /* conversion_percent.c */
-void	print_conversion_percent(t_vars *vars, t_flags *flags);
+void	print_percent(t_vars *vars, t_flags *flags);
 
 /* unsigned.c */
 int		num_len_in_str(size_t n, char *base);

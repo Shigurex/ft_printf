@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion_large_x.c                               :+:      :+:    :+:   */
+/*   conversion_x.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:43:25 by yahokari          #+#    #+#             */
-/*   Updated: 2024/01/19 09:57:14 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/02/14 22:23:37 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_conversion_large_x(t_vars *vars, t_flags *flags, unsigned int n)
+void	print_uint_hex_lower(t_vars *vars, t_flags *flags, unsigned int n)
 {
 	if (n == 0 && flags->alt_form)
 		flags->alt_form = false;
-	print_unsigned(vars, flags, n, HEX_UPPER);
+	print_unsigned(vars, flags, n, HEX_LOWER);
 }

@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:01:45 by yahokari          #+#    #+#             */
-/*   Updated: 2024/01/31 01:24:42 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/02/14 22:22:10 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,21 +99,21 @@ void	print_conversions(t_vars *vars)
 	handle_width(vars, &flags);
 	handle_precision(vars, &flags);
 	if (*vars->str == 'c')
-		print_conversion_c(vars, &flags, va_arg(vars->ap, int));
+		print_char(vars, &flags, va_arg(vars->ap, int));
 	else if (*vars->str == 's')
-		print_conversion_s(vars, &flags, va_arg(vars->ap, char *));
+		print_str(vars, &flags, va_arg(vars->ap, char *));
 	else if (*vars->str == 'p')
-		print_conversion_p(vars, &flags, va_arg(vars->ap, uintptr_t));
+		print_address(vars, &flags, va_arg(vars->ap, uintptr_t));
 	else if (*vars->str == 'd' || *vars->str == 'i')
-		print_conversion_di(vars, &flags, va_arg(vars->ap, int));
+		print_int(vars, &flags, va_arg(vars->ap, int));
 	else if (*vars->str == 'u')
-		print_conversion_u(vars, &flags, va_arg(vars->ap, unsigned int));
+		print_uint(vars, &flags, va_arg(vars->ap, unsigned int));
 	else if (*vars->str == 'x')
-		print_conversion_x(vars, &flags, va_arg(vars->ap, unsigned int));
+		print_uint_hex_lower(vars, &flags, va_arg(vars->ap, unsigned int));
 	else if (*vars->str == 'X')
-		print_conversion_large_x(vars, &flags, va_arg(vars->ap, unsigned int));
+		print_uint_hex_upper(vars, &flags, va_arg(vars->ap, unsigned int));
 	else if (*vars->str == '%')
-		print_conversion_percent(vars, &flags);
+		print_percent(vars, &flags);
 	else
 		vars->is_error = true;
 }

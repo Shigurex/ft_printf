@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion_u.c                                     :+:      :+:    :+:   */
+/*   percent.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 02:49:19 by yahokari          #+#    #+#             */
-/*   Updated: 2024/01/19 09:57:25 by yahokari         ###   ########.fr       */
+/*   Created: 2023/11/14 15:41:51 by yahokari          #+#    #+#             */
+/*   Updated: 2024/02/14 22:44:28 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_conversion_u(t_vars *vars, t_flags *flags, unsigned int n)
+void	print_percent(t_vars *vars, t_flags *flags)
 {
-	if (n == 0 && flags->alt_form)
-		flags->alt_form = false;
-	print_unsigned(vars, flags, n, DECIMAL);
+	print_char(vars, flags, '%');
 }

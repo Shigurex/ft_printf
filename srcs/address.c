@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion_percent.c                               :+:      :+:    :+:   */
+/*   conversion_p.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 15:41:51 by yahokari          #+#    #+#             */
-/*   Updated: 2023/12/07 13:34:24 by yahokari         ###   ########.fr       */
+/*   Created: 2023/11/13 11:08:34 by yahokari          #+#    #+#             */
+/*   Updated: 2024/02/14 22:22:58 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include	"ft_printf.h"
 
-void	print_conversion_percent(t_vars *vars, t_flags *flags)
+void	print_address(t_vars *vars, t_flags *flags, uintptr_t p)
 {
-	print_conversion_c(vars, flags, '%');
+	ft_putstr_fd(ALT_HEX_LOWER, STDOUT_FILENO);
+	vars->word_count += ft_strlen(ALT_HEX_LOWER);
+	if (flags->width >= num_len_in_str(p, HEX_LOWER))
+		flags->width -= num_len_in_str(p, HEX_LOWER);
+	print_unsigned(vars, flags, p, HEX_LOWER);
 }
