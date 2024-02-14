@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:28:08 by yahokari          #+#    #+#             */
-/*   Updated: 2024/02/14 22:23:52 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/02/14 22:51:59 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,28 +61,28 @@ int		ft_printf(const char *format, ...);
 /* conversions.c */
 void	print_conversions(t_vars *vars);
 
-/* conversion_c.c */
+/* char.c */
 void	print_char(t_vars *vars, t_flags *flags, unsigned char c);
 
-/* conversion_s.c */
+/* string.c */
 void	print_str(t_vars *vars, t_flags *flags, char *str);
 
-/* conversion_p.c */
+/* address.c */
 void	print_address(t_vars *vars, t_flags *flags, uintptr_t p);
 
-/* conversion_di.c */
+/* integer.c */
 void	print_int(t_vars *vars, t_flags *flags, int n);
 
-/* conversion_u.c */
+/* uint.c */
 void	print_uint(t_vars *vars, t_flags *flags, unsigned int n);
 
-/* conversion_x.c */
+/* uint_hex_lower.c */
 void	print_uint_hex_lower(t_vars *vars, t_flags *flags, unsigned int n);
 
-/* conversion_large_x.c */
+/* uint_hex_upper.c */
 void	print_uint_hex_upper(t_vars *vars, t_flags *flags, unsigned int n);
 
-/* conversion_percent.c */
+/* percent.c */
 void	print_percent(t_vars *vars, t_flags *flags);
 
 /* unsigned.c */
