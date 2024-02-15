@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:01:45 by yahokari          #+#    #+#             */
-/*   Updated: 2024/02/14 22:53:30 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/02/16 02:31:29 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,11 @@ static void	handle_precision(t_vars *vars, t_flags *flags)
 	}
 }
 
+/*
+va_argの処理を各print関数内にカプセル化すると、
+コマンドライン引数の情報がないとテストができなくなるため、
+保守運用の観点から第3引数の情報は残すことにした。
+*/
 void	print_conversions(t_vars *vars)
 {
 	t_flags	flags;
