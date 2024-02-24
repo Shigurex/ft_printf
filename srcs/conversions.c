@@ -6,13 +6,13 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:01:45 by yahokari          #+#    #+#             */
-/*   Updated: 2024/01/31 01:24:42 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/02/16 02:31:29 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_flags(t_flags *flags)
+static void	init_flags(t_flags *flags)
 {
 	flags->alt_form = false;
 	flags->left_justify = false;
@@ -24,7 +24,7 @@ void	init_flags(t_flags *flags)
 	flags->precision = UNSET;
 }
 
-void	handle_flags(t_vars *vars, t_flags *flags)
+static void	handle_flags(t_vars *vars, t_flags *flags)
 {
 	while (true)
 	{
@@ -47,7 +47,7 @@ void	handle_flags(t_vars *vars, t_flags *flags)
 	}
 }
 
-void	handle_width(t_vars *vars, t_flags *flags)
+static void	handle_width(t_vars *vars, t_flags *flags)
 {
 	if (ft_isdigit(*vars->str))
 	{
@@ -67,7 +67,7 @@ void	handle_width(t_vars *vars, t_flags *flags)
 	}
 }
 
-void	handle_precision(t_vars *vars, t_flags *flags)
+static void	handle_precision(t_vars *vars, t_flags *flags)
 {
 	if (*vars->str == '.')
 	{
@@ -90,6 +90,11 @@ void	handle_precision(t_vars *vars, t_flags *flags)
 	}
 }
 
+/*
+va_argの処理を各print関数内にカプセル化すると、
+コマンドライン引数の情報がないとテストができなくなるため、
+保守運用の観点から第3引数の情報は残すことにした。
+*/
 void	print_conversions(t_vars *vars)
 {
 	t_flags	flags;
@@ -99,21 +104,21 @@ void	print_conversions(t_vars *vars)
 	handle_width(vars, &flags);
 	handle_precision(vars, &flags);
 	if (*vars->str == 'c')
-		print_conversion_c(vars, &flags, va_arg(vars->ap, int));
+		print_char(vars, &flags, va_arg(vars->ap, int));
 	else if (*vars->str == 's')
-		print_conversion_s(vars, &flags, va_arg(vars->ap, char *));
+		print_str(vars, &flags, va_arg(vars->ap, char *));
 	else if (*vars->str == 'p')
-		print_conversion_p(vars, &flags, va_arg(vars->ap, uintptr_t));
+		print_address(vars, &flags, va_arg(vars->ap, uintptr_t));
 	else if (*vars->str == 'd' || *vars->str == 'i')
-		print_conversion_di(vars, &flags, va_arg(vars->ap, int));
+		print_int(vars, &flags, va_arg(vars->ap, int));
 	else if (*vars->str == 'u')
-		print_conversion_u(vars, &flags, va_arg(vars->ap, unsigned int));
+		print_uint(vars, &flags, va_arg(vars->ap, unsigned int));
 	else if (*vars->str == 'x')
-		print_conversion_x(vars, &flags, va_arg(vars->ap, unsigned int));
+		print_uint_hex_lower(vars, &flags, va_arg(vars->ap, unsigned int));
 	else if (*vars->str == 'X')
-		print_conversion_large_x(vars, &flags, va_arg(vars->ap, unsigned int));
+		print_uint_hex_upper(vars, &flags, va_arg(vars->ap, unsigned int));
 	else if (*vars->str == '%')
-		print_conversion_percent(vars, &flags);
+		print_percent(vars, &flags);
 	else
 		vars->is_error = true;
 }

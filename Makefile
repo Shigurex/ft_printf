@@ -10,14 +10,14 @@ LIBFT = libft.a
 
 SRC_NAME = ft_printf.c \
 	conversions.c \
-	conversion_c.c \
-	conversion_s.c \
-	conversion_p.c \
-	conversion_di.c \
-	conversion_u.c \
-	conversion_x.c \
-	conversion_large_x.c \
-	conversion_percent.c \
+	char.c \
+	string.c \
+	address.c \
+	integer.c \
+	uint.c \
+	uint_hex_lower.c \
+	uint_hex_upper.c \
+	percent.c \
 	unsigned.c \
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_NAME))

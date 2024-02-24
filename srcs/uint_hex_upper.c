@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion_di.c                                    :+:      :+:    :+:   */
+/*   conversion_large_x.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 01:22:37 by yahokari          #+#    #+#             */
-/*   Updated: 2024/01/31 01:57:48 by yahokari         ###   ########.fr       */
+/*   Created: 2023/11/14 15:43:25 by yahokari          #+#    #+#             */
+/*   Updated: 2024/02/14 22:23:46 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"ft_printf.h"
+#include "ft_printf.h"
 
-void	print_conversion_di(t_vars *vars, t_flags *flags, int n)
+void	print_uint_hex_upper(t_vars *vars, t_flags *flags, unsigned int n)
 {
-	(void)vars;
-	(void)flags;
-	ft_putnbr_fd(n, STDOUT_FILENO);
+	if (n == 0 && flags->alt_form)
+		flags->alt_form = false;
+	print_unsigned(vars, flags, n, HEX_UPPER);
 }

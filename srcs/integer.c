@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion_p.c                                     :+:      :+:    :+:   */
+/*   integer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 11:08:34 by yahokari          #+#    #+#             */
-/*   Updated: 2024/02/16 10:54:37 by yahokari         ###   ########.fr       */
+/*   Created: 2024/01/31 01:22:37 by yahokari          #+#    #+#             */
+/*   Updated: 2024/02/16 02:32:16 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
 
-void	print_conversion_p(t_vars *vars, t_flags *flags, uintptr_t p)
+// TODO: flagsを用いた形式への対応
+void	print_int(t_vars *vars, t_flags *flags, int n)
 {
-	size_t	len_hex_lower;
-
-	ft_putstr_fd(ALT_HEX_LOWER, STDOUT_FILENO);
-	len_hex_lower = ft_strlen(ALT_HEX_LOWER);
-	vars->word_count += len_hex_lower;
-	if (flags->width >= (int)len_hex_lower)
-		flags->width -= len_hex_lower;
-	print_unsigned(vars, flags, p, HEX_LOWER);
+	(void)vars;
+	(void)flags;
+	ft_putnbr_fd(n, STDOUT_FILENO);
 }

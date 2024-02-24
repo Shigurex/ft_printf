@@ -6,26 +6,20 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:28:18 by yahokari          #+#    #+#             */
-/*   Updated: 2023/11/10 01:18:45 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/02/14 22:43:51 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_vars(t_vars *vars, const char *format)
+static void	init_vars(t_vars *vars, const char *format)
 {
 	vars->str = format;
 	vars->word_count = 0;
 	vars->is_error = false;
 }
 
-void	print_char(t_vars *vars)
-{
-	ft_putchar_fd(*vars->str, STDOUT_FILENO);
-	vars->word_count++;
-}
-
-void	handle_str_with_conversions(t_vars *vars)
+static void	handle_str_with_conversions(t_vars *vars)
 {
 	while (!vars->is_error && *vars->str)
 	{
@@ -35,7 +29,10 @@ void	handle_str_with_conversions(t_vars *vars)
 			print_conversions(vars);
 		}
 		else
-			print_char(vars);
+		{
+			ft_putchar_fd(*vars->str, STDOUT_FILENO);
+			vars->word_count++;
+		}
 		++vars->str;
 	}
 }
