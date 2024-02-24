@@ -6,7 +6,7 @@
 /*   By: yahokari <yahokari@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 02:28:29 by yahokari          #+#    #+#             */
-/*   Updated: 2024/02/14 22:54:11 by yahokari         ###   ########.fr       */
+/*   Updated: 2024/02/24 14:55:34 by yahokari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,15 @@ void	print_unsigned(t_vars *vars, t_flags *flags, size_t n, char *base)
 
 	str_len = (flags->alt_form ? 2 : 0) + \
 		(num_len_in_str(n, base) < flags->precision ? flags->precision : num_len_in_str(n, base));
-	if (flags->width <= str_len)
+	if (n == 0 && flags->precision == 0)
+	{
+		if (flags->width > 0)
+		{
+			ft_putnchar_fd(' ', flags->width, STDOUT_FILENO);
+			vars->word_count += flags->width;
+		}
+	}
+	else if (flags->width <= str_len)
 	{
 		if (flags->alt_form)
 			ft_putstr_fd((ft_strcmp(HEX_LOWER, base) == 0) ? ALT_HEX_LOWER : ALT_HEX_UPPER, STDOUT_FILENO);
